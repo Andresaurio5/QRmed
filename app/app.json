@@ -48,6 +48,15 @@
         }
       ]
     ],
-    "scheme": "qrmed"
+    "scheme": "qrmed",
+    "owner": "andresaurio4s-team",
+    "extra": {
+      "eas": {
+        "projectId": "804db49e-4ff1-4c3c-8977-bde8dc048811"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    }
   }
 }
