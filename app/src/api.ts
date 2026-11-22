@@ -1,7 +1,7 @@
 import * as SecureStore from 'expo-secure-store';
 
 // Dirección del servidor. Se fija al compilar (eas.json) o en un archivo .env para desarrollo.
-export const API_URL = (process.env.EXPO_PUBLIC_API_URL || 'https://qrmed.onrender.com').replace(/\/$/, '');
+export const API_URL = (process.env.EXPO_PUBLIC_API_URL || 'https://qrmed-nik4.onrender.com').replace(/\/$/, '');
 
 const CLAVE_TOKEN = 'qrmed_token';
 let token: string | null = null;
