@@ -1,6 +1,6 @@
 // Páginas web simples: inicio (con link de descarga del APK) y la que se abre si escanean con otra app
 
-const APK_URL = process.env.APK_URL || '';
+const APK_URL = process.env.APK_URL || 'https://github.com/Andresaurio5/QRmed/releases/latest/download/QRmed.apk';
 
 const estilo = `
   *{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;

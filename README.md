@@ -60,13 +60,13 @@ echo "EXPO_PUBLIC_API_URL=http://IP-DE-TU-PC:3000" > .env
 npx expo start                   # escanea con Expo Go
 ```
 
-## Compilar el APK
+## Descargar la app (Android)
 
-```bash
-cd app
-npx eas-cli login
-npx eas-cli build -p android --profile preview
-```
+👉 **https://github.com/Andresaurio5/QRmed/releases/latest/download/QRmed.apk**
+
+GitHub Actions compila el APK automáticamente cada vez que cambia la carpeta `app/`
+(`.github/workflows/android.yml`) y lo publica en *Releases*.
+También se puede compilar con Expo EAS: `cd app && npx eas-cli build -p android --profile preview`.
 
 ## API
 
