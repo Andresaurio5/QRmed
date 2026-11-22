@@ -1,6 +1,7 @@
 import pg from 'pg';
 import bcrypt from 'bcryptjs';
 import crypto from 'node:crypto';
+import { fijarSecreto } from './auth.js';
 
 // Las fechas (DATE) se devuelven como texto AAAA-MM-DD, no como Date con zona horaria
 pg.types.setTypeParser(1082, (v) => v);
@@ -101,10 +102,22 @@ CREATE TABLE IF NOT EXISTS accesos (
 );
 CREATE INDEX IF NOT EXISTS idx_accesos_medico ON accesos(medico_id, fecha DESC);
 CREATE INDEX IF NOT EXISTS idx_accesos_paciente ON accesos(paciente_id, fecha DESC);
+
+CREATE TABLE IF NOT EXISTS ajustes (
+  clave TEXT PRIMARY KEY,
+  valor TEXT NOT NULL
+);
 `;
 
 export async function migrar() {
   await q(ESQUEMA);
+  if (!process.env.JWT_SECRET) {
+    // Genera la clave de sesiones una sola vez y la reutiliza en cada reinicio
+    await q(`INSERT INTO ajustes(clave, valor) VALUES ('jwt_secret', $1) ON CONFLICT (clave) DO NOTHING`, [
+      crypto.randomBytes(48).toString('base64url'),
+    ]);
+    fijarSecreto((await q(`SELECT valor FROM ajustes WHERE clave = 'jwt_secret'`)).rows[0].valor);
+  }
   if (process.env.SEED_DEMO !== 'false') await sembrarDemo();
 }
 

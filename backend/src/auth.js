@@ -1,8 +1,11 @@
 import jwt from 'jsonwebtoken';
 import crypto from 'node:crypto';
 
-const SECRET = process.env.JWT_SECRET || 'solo-para-desarrollo-cambiar';
-if (!process.env.JWT_SECRET) console.warn('⚠ JWT_SECRET no definido, usando uno de desarrollo');
+// Se fija al arrancar: JWT_SECRET del entorno o, si no hay, una clave aleatoria guardada en la base
+let SECRET = process.env.JWT_SECRET || '';
+export function fijarSecreto(s) {
+  SECRET = s;
+}
 
 export function firmarToken(usuario) {
   return jwt.sign({ sub: usuario.id, rol: usuario.rol }, SECRET, { expiresIn: '30d' });

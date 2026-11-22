@@ -20,7 +20,6 @@ services:
     build: .
     environment:
       DATABASE_URL: postgres://qrmedico:qrmedico@db:5432/qrmedico
-      JWT_SECRET: cambia-esto-en-produccion
       PORT: 3000
     ports:
       - "3000:3000"
