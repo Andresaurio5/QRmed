@@ -1,0 +1,27 @@
+{
+  "name": "qr-medico-api",
+  "version": "1.0.0",
+  "description": "API de QR Médico",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "express": "^4.22.3",
+    "jsonwebtoken": "^9.0.3",
+    "multer": "^2.5.0",
+    "pg": "^8.23.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "embedded-postgres": "^18.7.0-beta.19"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  }
+}

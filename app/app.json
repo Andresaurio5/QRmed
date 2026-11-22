@@ -1,0 +1,53 @@
+{
+  "expo": {
+    "name": "QR Médico",
+    "slug": "qrmed",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.andresaurio5.qrmed",
+      "infoPlist": {
+        "NSCameraUsageDescription": "La cámara se usa para escanear el QR médico del paciente."
+      }
+    },
+    "android": {
+      "package": "com.andresaurio5.qrmed",
+      "permissions": [
+        "android.permission.CAMERA"
+      ],
+      "adaptiveIcon": {
+        "backgroundColor": "#C8102E",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "La cámara se usa para escanear el QR médico del paciente.",
+          "recordAudioAndroid": false
+        }
+      ],
+      "expo-sharing",
+      "expo-secure-store",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Para subir fotos de tus documentos médicos.",
+          "cameraPermission": "Para fotografiar tus documentos médicos.",
+          "microphonePermission": false
+        }
+      ]
+    ],
+    "scheme": "qrmed"
+  }
+}

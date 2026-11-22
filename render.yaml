@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: qrmed
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        sync: false # se pega a mano (viene de Neon)
+      - key: JWT_SECRET
+        generateValue: true
+      - key: APK_URL
+        sync: false

@@ -1,0 +1,32 @@
+# Para correr todo en tu PC: docker compose up --build
+# API en http://localhost:3000  ·  Postgres en localhost:5432
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: qrmedico
+      POSTGRES_PASSWORD: qrmedico
+      POSTGRES_DB: qrmedico
+    ports:
+      - "5432:5432"
+    volumes:
+      - datos:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U qrmedico"]
+      interval: 3s
+      retries: 20
+
+  api:
+    build: .
+    environment:
+      DATABASE_URL: postgres://qrmedico:qrmedico@db:5432/qrmedico
+      JWT_SECRET: cambia-esto-en-produccion
+      PORT: 3000
+    ports:
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  datos:
